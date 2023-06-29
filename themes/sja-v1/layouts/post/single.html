@@ -1,0 +1,44 @@
+{{- define "main" -}}
+<section class="section pt-55 ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 mb-20">
+                <!--Post-single-->
+                <div class="post-single">
+                    <div class="post-single-image d-flex">
+                        {{ $coverImgL  := replaceRE "[0-9]+x[0-9]+cq[0-9]+" "720x540cq1" .Params.Cover }}                                    
+                        {{ $webpCoverImgL := replaceRE ".jpg" ".webp" $coverImgL }}
+                        {{ $coverImgH  := replaceRE "[0-9]+x[0-9]+cq[0-9]+" "720x540cq90" .Params.Cover }}                                    
+                        {{ $webpCoverImgH := replaceRE ".jpg" ".webp" $coverImgH }}
+                        <img class="mx-auto lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src='{{ $webpCoverImgH }}' alt="{{ .Title }}" width="720" height="540">
+                    </div>
+                    <div class="post-single-content">
+                        
+                        <h4>{{ .Title }}</h4>
+                        <div class="post-single-info">
+                            <ul class="list-inline">{{ $avatar := "img/user.png" -}}
+                                <li><img class="lazyload" data-src='{{ if eq .Params.authorAv "notfound" }}{{$avatar | absURL}}{{else}}{{.Params.authorAv}}{{end}}' alt="{{ .Params.Author }}"></li>
+                                <li>{{ .Params.Author }}</li>
+                                <li class="dot"></li>
+                                <li>{{ time.Format ":date_medium" .Date }}</li>                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mb-1">{{ partial "ads-below-title.html" . }}</div>
+                    <div class="post-single-body"> 
+                      {{ replace (replace .Content "<!--inarticleads1-->" (partial "ads-in-article1.html" .)) "<!--inarticleads2-->" (partial "ads-in-article2.html" .) | safeHTML }}
+                    </div>
+                    <div class="mt-1">{{ partial "ads-below-content.html" . }}</div>
+
+                </div> 
+                <!--/-->
+                <!--next & previous-posts-->
+                {{ partial "prev-next-post.html" . }}
+                <!--/-->
+            </div>   
+            {{ partial "sidebar.html" . }}
+        </div>
+    </div>
+</section>
+
+{{- end -}}

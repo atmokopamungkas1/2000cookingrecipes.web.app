@@ -1,0 +1,160 @@
+{{ with .Site.Params.contentThemeColor }}
+<style>
+.sign-form .btn-link:hover {
+  color: {{ . | safeCSS }} !important;
+}
+.sign-form .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: {{ . | safeCSS }};
+  border-color: {{ . | safeCSS }};
+}
+.page404 .content h1 {
+  color: {{ . | safeCSS }};
+}
+.pagination ul li {
+  border: 1px solid {{ . | safeCSS }};
+}
+.pagination ul li a {
+  color: {{ . | safeCSS }};
+}
+.pagination ul li.active, .pagination ul li:hover {
+  background-color: {{ . | safeCSS }};
+}
+.search .close {
+  background-color: {{ . | safeCSS }};
+}
+.search .close:hover {
+  background-color: {{ . | safeCSS }};
+}
+.search-form .search-btn {
+  background-color: {{ . | safeCSS }};
+}
+.search-form .search-btn:hover {
+  background-color: {{ . | safeCSS }};
+}
+.newslettre-form .submit-btn {
+  background-color: {{ . | safeCSS }};
+  border: 1px solid {{ . | safeCSS }};
+}
+.newslettre-form .submit-btn:hover {
+  background-color: {{ . | safeCSS }};
+  border: 1px solid {{ . | safeCSS }};
+}
+.newslettre .social-icones li a:hover {
+  color: {{ . | safeCSS }} !important;
+}
+.newslettre .social-icones li a:hover i {
+  color: {{ . | safeCSS }};
+}
+.btn-custom {
+  background-color: {{ . | safeCSS }};
+}
+.btn-custom:hover, .btn-custom:focus {
+  background-color: {{ . | safeCSS }};
+}
+.link {
+  background-color: {{ . | safeCSS }};
+}
+.dot {
+  background-color: {{ . | safeCSS }};
+}
+.social-icones li a i:hover {
+  color: {{ . | safeCSS }} !important;
+}
+.section-title h5:after {
+  background-color: {{ . | safeCSS }};
+}
+.navbar .nav-item .nav-link i {
+  color: {{ . | safeCSS }};
+}
+.navbar .nav-item .nav-link.active, .navbar .nav-item .nav-link:hover {
+  color: {{ . | safeCSS }} !important;
+}
+.navbar .nav-item .dropdown-menu .dropdown-item:hover, .navbar .nav-item .dropdown-menu .dropdown-item.active {
+  color: {{ . | safeCSS }} !important;
+}
+.navbar .nav-item:hover .nav-link {
+  color: {{ . | safeCSS }};
+}
+.navbar-right .search-icon {
+  background-color: {{ . | safeCSS }};
+}
+.navbar-right .search-icon:hover {
+  background-color: {{ . | safeCSS }};
+}
+.widget-latest-posts .last-post .nb {
+  background-color: {{ . | safeCSS }};
+}
+.widget-latest-posts .last-post .content a:hover {
+  color: {{ . | safeCSS }} !important;
+}
+.widget-latest-posts .last-post .content small span {
+  color: {{ . | safeCSS }};
+}
+.widget-categories li a:hover {
+  color: {{ . | safeCSS }};
+}
+.widget-next-post .small-post .nb, .widget-previous-post .small-post .nb {
+  background-color: {{ . | safeCSS }};
+}
+.widget-next-post .small-post .content a:hover, .widget-previous-post .small-post .content a:hover {
+  color: {{ . | safeCSS }} !important;
+}
+.widget-next-post .small-post .content small span, .widget-previous-post .small-post .content small span {
+  color: {{ . | safeCSS }};
+}
+.post-card-content h5 a:hover {
+  color: {{ . | safeCSS }};
+}
+.post-card-info li a:hover {
+  color: {{ . | safeCSS }};
+}
+.post-single-gallery .owl-dot span {
+  border: 1px solid {{ . | safeCSS }};
+}
+.post-single-gallery .owl-dot.active span {
+  background-color: {{ . | safeCSS }};
+}
+.post-single-content h4 a:hover {
+  color: {{ . | safeCSS }};
+}
+.post-single-body .quote i {
+  color: {{ . | safeCSS }};
+}
+.categorie {
+  background-color: {{ . | safeCSS }};
+}
+.categorie-title small a:hover {
+  color: {{ . | safeCSS }};
+}
+.categorie-title h3 span {
+  color: {{ . | safeCSS }};
+}
+.carousel-hero .owl-nav .owl-prev:hover,
+.carousel-hero .owl-nav .owl-next:hover {
+  background-color: {{ . | safeCSS }} !important;
+  border: 1px solid {{ . | safeCSS }} !important;
+}
+.about-us .description .quote i {
+  color: {{ . | safeCSS }};
+}
+.footer .copyright p a:hover {
+  color: {{ . | safeCSS }};
+}
+.footer .back .back-top {
+  background-color: {{ . | safeCSS }};
+  border: 1px solid {{ . | safeCSS }};
+}
+.footer .back .back-top:hover {
+  border: 1px solid {{ . | safeCSS }};
+}
+.footer .back .back-top:hover i {
+  color: {{ . | safeCSS }};
+}
+.loading .circle {
+  background-color: {{ . | safeCSS }};
+}
+.navbar .nav-item .dropdown-menu .dropdown-item:hover, .navbar .nav-item .dropdown-menu .dropdown-item.active {
+  color: {{ . | safeCSS }};
+}
+</style>
+{{ end }}

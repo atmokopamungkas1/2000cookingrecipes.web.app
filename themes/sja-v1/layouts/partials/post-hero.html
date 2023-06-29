@@ -1,0 +1,31 @@
+
+    <section class="section carousel-hero">
+        <div class="owl-carousel">
+            {{ range (where site.RegularPages "Type" "in" site.Params.mainSections | first site.Params.heroCarousel) }}
+            {{ $cover := replaceRE "[0-9]+x[0-9]+cq[0-9]+" "1200x675cq80" .Params.Cover }}
+            {{ $webpCover := replaceRE ".jpg" ".webp" $cover }}
+            <div class="hero d-flex align-items-center " style="background-image: url('{{ $webpCover }}')">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                            <div class="hero-content">                                
+                                <h2>
+                                    <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+                                </h2>
+    
+                                <div class="post-card-info">
+                                    <ul class="list-inline">
+                                        <li>{{ .Params.Author }}</li>
+                                        <li class="dot"></li>
+                                        <li>{{ time.Format ":date_long" .Params.date }}</li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            {{ end }}                
+        </div>
+    </section>

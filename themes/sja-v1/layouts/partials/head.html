@@ -1,0 +1,78 @@
+<head>
+  {{ partial "arsae-client.html" . }}
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{ if ne .Section "post" }}
+  <title>{{ .Site.Title }} - {{ .Site.Params.description }}</title>
+  {{ end }}
+
+  {{ if eq .Section "post"}}
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  {{ end }}
+
+  {{ if eq .Section "post"}}
+  <meta name="description" content="{{ truncate 150 .Summary | markdownify | plainify | htmlUnescape }}">
+  {{ end}}
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  {{ if ne .Section "post"}}
+  {{ with .Site.Params.description }}
+  <meta name="description" content="{{ . }}">
+  {{ end }}
+  {{ end }}
+  <link rel="preconnect dns-prefetch" crossorigin href="https://fonts.googleapis.com" />
+  <link rel="preconnect dns-prefetch" crossorigin href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect dns-prefetch" crossorigin href="https://img-global.cpcdn.com" />
+  {{with .Site.Params.histatsID}}
+  <link rel="preconnect dns-prefetch" crossorigin href="https://s10.histats.com" />
+  {{end}}  
+  {{ $appleTouchIcon := "img/apple-touch-icon.png" }}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ $appleTouchIcon | absURL }}">
+
+  {{ $favicon32x32 := "img/icon-32.png" }}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ $favicon32x32 | absURL }}">
+
+  {{ $favicon16x16 := "img/icon-16.png" }}
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ $favicon16x16 | absURL }}">
+  
+
+  {{ $bootstrapCss := "css/bootstrap.min.css" }}
+  <link rel="preload" href="{{ $bootstrapCss | absURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{ $bootstrapCss | absURL }}"></noscript>
+  {{ $customCss := "css/style.css" }}
+  <link rel="preload" href="{{ $customCss | absURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{ $customCss | absURL }}"></noscript>
+
+
+{{if .IsNode}}
+  {{ $owlCarouselCss := "css/owl.carousel.css" }}
+  <link rel="preload" href="{{ $owlCarouselCss | absURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{ $owlCarouselCss | absURL }}"></noscript>
+
+  {{ $fontAwesomeCss := "css/fontawesome.css" }}
+  <link rel="preload" href="{{ $fontAwesomeCss | absURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{ $fontAwesomeCss | absURL }}"></noscript>
+{{end}}
+
+  
+
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&amp;display=swap"></noscript>
+
+  {{ $elegantIconCss := "css/elegant-font-icons.css" }}
+  <link rel="preload" href="{{ $elegantIconCss | absURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{ $elegantIconCss | absURL }}"></noscript>
+ 
+
+
+{{ with .Site.Params.contentThemeColor }}
+  <meta name="theme-color" content="{{.}}" />
+  <meta name="msapplication-navbutton-color" content="{{.}}" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="{{.}}" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+{{end}}   
+
+  {{ partial "style.html" . }}
+  {{ partial "schema.html" . }}
+</head>

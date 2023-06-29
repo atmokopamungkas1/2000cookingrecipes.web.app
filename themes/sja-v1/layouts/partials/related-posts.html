@@ -1,0 +1,21 @@
+<div class="widget ">
+    <div class="section-title">
+        <h5>More Recipes</h5>
+    </div>
+
+    <ul class="widget-latest-posts">
+    	{{ range first 6 (shuffle (where (where site.RegularPages "Type" "in" site.Params.mainSections) "Title" "!=" .Title )) }}
+        <li class="last-post">
+            <div class="image">
+                <a href="{{ .Permalink }}">
+                    <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src='{{ if eq .Params.Image "" }}https://placeholder.pics/svg/320x160{{else}}{{ replaceRE  "[0-9]+x[0-9]+cq[0-9]+" "86x90cq50" .Params.Cover }}{{end}}' alt="{{ .Title | markdownify }}">
+                </a>
+            </div>            
+            <div class="content">
+                <p><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></p>
+                <small><span class="icon_clock_alt"></span>{{ time.Format ":date_medium" .Params.Date }}</small>
+            </div>
+        </li>
+        {{- end -}}
+    </ul>
+</div>

@@ -1,0 +1,102 @@
+############### WAJIB DIGANTI ################
+
+baseURL = "https://2000cookingrecipes.web.app/"        
+languageCode = "id-ID"
+title = "Recipes Must Be Delicious And Delicious"       
+
+##############################################
+
+################## OPSIONAL ##################
+
+theme = "sja-v1"  
+enableRobotsTXT = "true"
+
+[params]
+  description = "A collection of must-try cooking recipes that are definitely delicious"  
+  histatsID = ""    
+  contentThemeColor = "#20fdf0"    
+  postPerPage = "21"                
+  stepText = "Langkah ke-"
+  cookieConsent = true
+  heroCarousel = "5"
+  author = "Siti Nuraini"
+
+  [params.sitemap]
+    newsLang = "id"
+    newsPost = "30"
+    maxPost = "49999"   # MAXIMUM 49999
+
+[menu]
+  [[menu.nav]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[permalinks]
+  post = "/:year/:month/:slug/"
+
+
+
+##############################################
+
+
+##############################################
+##                                          ##
+## DIBAWAH INI GAUSAH DI EDIT KALO GA PAHAM ##
+##                                          ##
+##############################################
+
+[outputs]
+  home = ["HTML", "RSS", "JSON", "SITEMAPPOST", "SITEMAPNEWS"]  
+
+disableKinds = ["RSS", "sitemap"]
+
+[outputFormats.SITEMAPNEWS]
+    name = "SITEMAPNEWS"
+    mediaType = "application/xml"
+    baseName = "sitemap-1"
+    Rel = "sitemap-1"
+
+[outputFormats.SITEMAPPOST]
+    name = "SITEMAPPOST"
+    mediaType = "application/xml"
+    baseName = "sitemap-2"
+    Rel = "sitemap-2"    
+
+[taxonomies]
+  tag = ""
+  category = ""
+
+[minify] 
+  minifyOutput             = true
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.parser]
+      attribute = true
+      autoHeadingID = true
+    [markup.goldmark.renderer]
+      hardWraps = false
+      unsafe = true
+      xHTML = false
+  [markup.highlight]
+    codeFences = true
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "monokai"
+    tabWidth = 4
+  [markup.tableOfContents]
+    endLevel = 6
+    startLevel = 2

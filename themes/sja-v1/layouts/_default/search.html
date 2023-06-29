@@ -1,0 +1,57 @@
+{{ define "main" }}
+<script src='{{ "js/jquery-3.5.0.min.js" | absURL }}'></script>
+<script src='{{ "js/fuse.min.js" | absURL }}'></script>
+<script src='{{ "js/jquery.mark.min.js" | absURL }}'></script>
+<script src='{{ "js/search.js" | absURL }}'></script>
+    <section class="categorie-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="categorie-title">
+                        <h3>{{.Title}} : <span id="search-string"></span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="section masonry-layout mt-30">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 mt--10 ">
+                <!--cards-->
+                <div class="card-columns" id="search-results">
+                     
+                </div>
+
+                <!--pagination-->
+
+                <!--/-->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- this template is sucked in by search.js and appended to the search-results div above. So editing here will adjust style -->
+
+
+<script id="search-result-template" type="text/x-js-template">
+  <div class="card" id="summary-${key}">
+        <div class="post-card">
+        <div class="post-card-image">
+            <a href="${link}">
+                <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="${cover}" alt="${title}">
+            </a>
+        </div>
+        <div class="post-card-content">  
+            <h5><a href="${link}">${title}</a> </h5>
+            <p>${snippet}</p>
+            <div class="post-card-info">
+                <ul class="list-inline">
+                    <li>${tags}</li>
+                </ul>
+            </div>
+        </div>
+        </div><!--/-->
+    </div>
+</script>
+{{ end }}

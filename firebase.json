@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "2000cookingrecipes",	  
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

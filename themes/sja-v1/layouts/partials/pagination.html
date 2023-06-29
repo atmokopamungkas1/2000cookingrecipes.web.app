@@ -1,0 +1,41 @@
+<div class="pagination mt-30">
+{{ $pag := $.Paginator }}
+{{ if gt $pag.TotalPages 1 }}
+    <ul class="list-inline">        
+        {{ with $pag.First }}
+        <li>
+            {{ if $pag.HasPrev }}
+            <a href="{{ .URL }}" aria-label="First" ><i class="arrow_carrot-2left"></i></a>
+            {{ else }}
+            <span class="disabled"><i class="arrow_carrot-2left"></i></span>
+            {{ end }}
+        </li>
+        {{ end }}
+        {{ if $pag.HasPrev }}
+        <li>
+            <a href="{{ $pag.Prev.URL }}" aria-label="Previous"><i class="arrow_carrot-left"></i></a>
+        </li>
+        {{ end }}
+        {{ $.Scratch.Set "__paginator.ellipsed" false }}{{ range $pag.Pagers }}{{ $right := sub .TotalPages .PageNumber }}{{ $showNumber := or (le .PageNumber 3) (eq $right 0) }}{{ $showNumber := or $showNumber (and (gt .PageNumber (sub $pag.PageNumber 2)) (lt .PageNumber (add $pag.PageNumber 2))) }}{{ if $showNumber }}{{ $.Scratch.Set "__paginator.ellipsed" false }}{{ $.Scratch.Set "__paginator.shouldEllipse" false }}{{ else }}{{ $.Scratch.Set "__paginator.shouldEllipse" (not ($.Scratch.Get "__paginator.ellipsed") ) }}{{ $.Scratch.Set "__paginator.ellipsed" true }}{{ end }}{{ if $showNumber }}
+        <li{{ if eq . $pag }} class="active"{{ end }}>
+            <a href="{{ .URL }}">{{ .PageNumber }}</a>
+        </li>
+        {{ else if ($.Scratch.Get "__paginator.shouldEllipse") }}
+        <li><span aria-hidden="true" class="disabled">&hellip;</span></li>
+        {{ end }}{{ end }}
+        {{ if $pag.HasNext }}
+        <li>
+            <a href="{{ $pag.Next.URL }}" aria-label="Next"><i class="arrow_carrot-right"></i></a>
+        </li>
+        {{ end }}
+        {{ with $pag.Last }}
+        <li>
+            {{ if $pag.HasNext }}
+            <a href="{{ .URL }}" aria-label="Last"><i class="arrow_carrot-2right"></i></a>
+            {{ else }}
+            <span class="disabled"><i class="arrow_carrot-2right"></i></span>
+            {{ end }}
+        </li>
+        {{ end }}       
+    </ul>{{ end }}
+</div>

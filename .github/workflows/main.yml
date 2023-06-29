@@ -1,0 +1,30 @@
+name: Deploy ke Firebase
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: [ ubuntu-latest ]
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2  
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.90.1'
+
+      - name: Build Hugo
+        run: hugo 
+
+      - name: Deploy ke Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting:2000cookingrecipes
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

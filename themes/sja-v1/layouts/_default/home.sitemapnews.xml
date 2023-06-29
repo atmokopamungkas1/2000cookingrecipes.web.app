@@ -1,0 +1,23 @@
+{{ print "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\" ?>"  | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+ {{ range (where site.RegularPages "Type" "in" site.Params.mainSections | first site.Params.Sitemap.newsPost) }}
+<url>
+    <loc>{{ .Permalink }}</loc>
+    <news:news>
+        <news:publication>
+            <news:name>{{.Site.Title}}</news:name>
+            <news:language>{{site.Params.Sitemap.newsLang}}</news:language>
+        </news:publication>
+        <news:publication_date>{{ .Params.date.Format "2006-01-02T15:04:05-07:00"  }}</news:publication_date>
+        <news:title>{{ .Title | markdownify }}</news:title>
+        <news:keywords>{{replaceRE " " ", " .Params.Katakunci}}</news:keywords>
+    </news:news>
+    <image:image>
+        <image:loc>{{.Params.Cover}}</image:loc>
+        <image:caption>Photo by {{.Params.Author}}</image:caption>
+        <image:title>{{ .Title | markdownify }}</image:title>
+    </image:image>
+</url>
+  {{- end }}
+
+</urlset>

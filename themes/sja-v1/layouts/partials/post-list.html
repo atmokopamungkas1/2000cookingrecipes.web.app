@@ -1,0 +1,45 @@
+
+{{ partial "post-hero.html" . }}
+
+<section class="mt-80 jump">
+    <div class="container-fluid">
+        <div class="row all-post">            
+        {{ $i :=1 }}                        
+        {{ range (.Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) site.Params.postPerPage).Pages }}
+        {{ $i = add $i 1 }}
+            <div class="col-lg-4 col-md-6">
+                <div class="post-card">
+                    <div class="post-card-image">
+                        <a href="{{ .Permalink }}">                                    
+                            {{ $postH  := replaceRE "[0-9]+x[0-9]+cq[0-9]+" "340x453cq90" .Params.Cover }}                                    
+                            {{ $webpPostH := replaceRE ".jpg" ".webp" $postH }}
+                             
+                            <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src='{{ if eq .Params.Image "" }}https://placeholder.pics/svg/337x239{{else}}{{ $webpPostH }}{{end}}' alt="{{ .Title | markdownify }}" width="340" height="453">                                   
+                        </a>
+
+                    </div>
+                    <div class="post-card-content">                                    
+                        <h5>
+                            <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+                        </h5>
+                        <p>{{ truncate 150 .Content }}</p>                                    
+                    </div>
+                    <div class="post-card-info">
+                        <ul class="list-inline">
+                            {{ $avatar := "img/user.png" -}}
+                            {{ $authorAv  := replaceRE "[0-9]+x[0-9]+cq[0-9]+" "40x40cq50" .Params.authorAv }}
+                            <li><img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src='{{ if eq .Params.authorAv "notfound" }}{{$avatar | absURL}}{{else}}{{$authorAv}}{{end}}' alt="{{ .Params.Author }}"></li>
+                            <li>{{ .Params.Author }}</li>
+                            <li class="dot"></li>
+                            <li>{{ time.Format ":date_medium" .Params.date }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>  
+        {{ end }}  
+            <div class="col-lg-12">
+            {{ partial "pagination.html" . }}
+            </div>  
+        </div>
+    </div>
+</section>

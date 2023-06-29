@@ -1,0 +1,75 @@
+{{if not (in .Params.layout "search")}}
+<script src='{{ "js/jquery-3.5.0.min.js" | absURL }}'></script>
+{{end}}
+<script src='{{ "js/lazy.min.js" | absURL }}'></script>
+<script src='{{ "js/popper.min.js" | absURL }}'></script>
+<script src='{{ "js/bootstrap.min.js" | absURL }}'></script>
+
+<script src='{{ "js/switch.js" | absURL }}'></script>
+<script src='{{ "js/main.js" | absURL }}'></script>
+
+
+{{ if .IsNode }}
+<script type="text/javascript">
+jQuery.event.special.touchstart = {
+    setup: function( _, ns, handle ) {
+        this.addEventListener("touchstart", handle, { passive: !ns.includes("noPreventDefault") });
+    }
+};
+jQuery.event.special.touchmove = {
+    setup: function( _, ns, handle ) {
+        this.addEventListener("touchmove", handle, { passive: !ns.includes("noPreventDefault") });
+    }
+};
+jQuery.event.special.wheel = {
+    setup: function( _, ns, handle ){
+        this.addEventListener("wheel", handle, { passive: true });
+    }
+};
+jQuery.event.special.mousewheel = {
+    setup: function( _, ns, handle ){
+        this.addEventListener("mousewheel", handle, { passive: true });
+    }
+};</script>
+<script src='{{ "js/owl.carousel.min.js" | absURL }}'></script>
+<script type="text/javascript">
+/* -----------------------------------
+       Carousel-hero
+    -----------------------------------*/
+(function ($) {
+    $(".owl-carousel").on("initialized.owl.carousel", () => {
+  setTimeout(() => {
+    $(".jump").show();
+  }, 200);
+});
+	$(".carousel-hero .owl-carousel").owlCarousel({
+        lazyload:true,
+        animateOut: "fadeOut",
+        loop: true,
+        stagePadding: 0,
+        margin: 0,
+        nav: true,
+        autoplay: false,
+        center: false,
+        dots: false,
+        mouseDrag: true,
+        touchDrag: true,
+        smartSpeed: 1000,
+        autoplayHoverPause: false,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            768: {
+                items: 1,
+            },
+            1200: {
+                items: 1,
+            },
+        }
+    });
+})(jQuery);
+</script>
+{{ end}}
+    
